@@ -50,6 +50,7 @@ jobs:
     - name: Scan the image using sysdig-cli-scanner
       env:
         SECURE_API_TOKEN: ${{ secrets.SECURE_API_TOKEN }}
+
       run: |
         ${GITHUB_WORKSPACE}/cache/sysdig-cli-scanner \
           --apiurl https://app.us4.sysdig.com \
@@ -57,6 +58,8 @@ jobs:
           --console-log \
           --dbpath=${GITHUB_WORKSPACE}/cache/db/ \
           --cachepath=${GITHUB_WORKSPACE}/cache/scanner-cache/
+          --policy imagescanning1
+
 
     - uses: github/codeql-action/upload-sarif@v2
       #Upload SARIF file
